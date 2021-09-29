@@ -70,6 +70,12 @@ class Refraction
       @re_port || ((@re_scheme || @re_host) && default_port) || super
     end
 
+    def base_url
+      url = "#{scheme}://#{host}"
+      url = "#{url}:#{port}" if port != default_port
+      url
+    end
+
     def default_port
       case scheme
       when "http"  ; 80
